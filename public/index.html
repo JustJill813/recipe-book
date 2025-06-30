@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recipe Manager</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <h1>Recipe Manager</h1>
+
+  <form id="recipe-form">
+    <label for="name">Recipe Name:</label>
+    <input type="text" id="name" name="name" required />
+
+    <label for="ingredients">Ingredients:</label>
+    <textarea id="ingredients" name="ingredients" required></textarea>
+
+    <label for="instructions">Instructions:</label>
+    <textarea id="instructions" name="instructions" required></textarea>
+
+    <div class="form-buttons">
+      <button type="button" id="add-btn">Add Recipe</button>
+      <button type="button" id="edit-btn">Edit Recipe</button>
+      <button type="button" id="delete-btn">Delete Recipe</button>
+      <button type="submit" id="save-btn">Save Changes</button>
+    </div>
+  </form>
+
+  <hr />
+
+  <h2>My Recipes</h2>
+  <div id="recipe-list">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Ingredients</th>
+          <th>Instructions</th>
+        </tr>
+      </thead>
+      <tbody id="recipe-table-body">
+        <!-- Recipes will be dynamically added here -->
+      </tbody>
+    </table>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
