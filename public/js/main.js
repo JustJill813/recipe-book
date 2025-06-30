@@ -1,3 +1,7 @@
+console.log('main.js is connected');
+
+document.addEventListener('DOMContentLoaded', () => {
+
 // In-memory recipe store (to be replaced with backend fetch/save logic)
 let recipes = [];
 let editingIndex = null;
@@ -94,3 +98,4 @@ function resetForm() {
   form.reset();
   editingIndex = null;
 }
+});
