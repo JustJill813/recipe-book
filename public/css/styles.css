@@ -1,13 +1,26 @@
 /* Base mobile styles */
 body {
+  background-image: url('../images/food-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #333;
   font-family: Arial, sans-serif;
   margin: 1rem;
-  background-color: #f8f9fa;
-  color: #333;
+  background-color: var(--bg-light);
+  color: var(--text-dark);
+}
+
+.overlay {
+  background-color: rgba(255, 255, 255, 0.85); /* light overlay */
+  min-height: 100vh;
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
 form {
-  background-color: #fff;
+  background-color: var(--card-bg);
   padding: 1rem;
   border: 1px solid #ddd;
   border-radius: 6px;
@@ -32,19 +45,27 @@ textarea {
 }
 
 button {
-  flex: 1 1 48%;
-  padding: 0.5rem;
-  font-size: 1rem;
-  background-color: #3498db;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  .button-link {
+    transition: transform 0.2s ease, background-color 0.2s ease;
+  }
+  background-color: var(--primary);
+  color: black;
 }
 
-button:hover {
-  background-color: #2980b9;
+button:hover,
+  .button-link:hover {
+    transform: scale(1.03);
+  background-color: var(--primary), 10%;
 }
+
+:root {
+  --primary: #3498db;
+  --accent: #2ecc71;
+  --bg-light: lightblue;
+  --text-dark: #333;
+  --card-bg: white;
+}
+
 
 /* Table scales for smaller viewports */
 table {
@@ -83,11 +104,12 @@ th {
 }
 
 
+
 /* Desktop styles */
 @media (min-width: 768px) {
   body {
     margin: 2rem auto;
-    max-width: 960px;
+    max-width: 900px;
   }
 
   form {

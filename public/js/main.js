@@ -19,6 +19,7 @@ document.getElementById('edit-btn').addEventListener('click', loadRecipeForEdit)
 document.getElementById('delete-btn').addEventListener('click', deleteRecipe);
 form.addEventListener('submit', saveChanges);
 
+
 // Render the table
 function renderRecipes() {
   tableBody.innerHTML = '';
@@ -33,6 +34,7 @@ function renderRecipes() {
     tableBody.appendChild(row);
   });
 }
+
 
 // Add new recipe
 function addRecipe() {

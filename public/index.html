@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
+  <div class="overlay">
   <h1>Recipe Manager</h1>
 
   <form id="recipe-form">
@@ -31,23 +32,25 @@
 
 <a href="recipes.html" class="button-link">View All Recipes →</a>
 
+<h2>My Recipes</h2>
+<a href="recipes.html">View All Recipes →</a>
+<div id="recipe-list">
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Ingredients</th>
+        <th>Instructions</th>
+      </tr>
+    </thead>
+    <tbody id="recipe-table-body">
+      <!-- Recipes will be dynamically added here -->
+    </tbody>
+  </table>
+</div>
 
-  <h2>My Recipes</h2>
-  <div id="recipe-list">
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Ingredients</th>
-          <th>Instructions</th>
-        </tr>
-      </thead>
-      <tbody id="recipe-table-body">
-        <!-- Recipes will be dynamically added here -->
-      </tbody>
-    </table>
-  </div>
 
   <script src="js/main.js"></script>
+</div>
 </body>
 </html>
