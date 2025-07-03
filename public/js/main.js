@@ -39,6 +39,7 @@ function addRecipe() {
   const recipe = getFormData();
   if (recipe) {
     recipes.push(recipe);
+    saveToLocalStorage();
     renderRecipes();
     resetForm();
   }
@@ -59,6 +60,7 @@ function loadRecipeForEdit() {
     const recipe = getFormData();
     if (recipe) {
       recipes[editingIndex] = recipe;
+      saveToLocalStorage();
       renderRecipes();
       resetForm();
       editingIndex = null;
@@ -70,6 +72,7 @@ function loadRecipeForEdit() {
 function deleteRecipe() {
   if (editingIndex !== null) {
     recipes.splice(editingIndex, 1);
+    saveToLocalStorage();
     renderRecipes();
     resetForm();
     editingIndex = null;
@@ -81,6 +84,20 @@ function saveChanges(e) {
   e.preventDefault();
   loadRecipeForEdit();
 }
+
+function saveToLocalStorage() {
+  localStorage.setItem('recipes', JSON.stringify(recipes));
+}
+
+// When page loads, restore from localStorage
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('recipes');
+  if (saved) {
+    recipes = JSON.parse(saved);
+  }
+  renderRecipes();
+});
+
 
 // Helpers
 function getFormData() {

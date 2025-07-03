@@ -66,6 +66,23 @@ th {
   background-color: #ecf0f1;
 }
 
+.button-link {
+  display: inline-block;
+  background-color: #2ecc71;
+  color: white;
+  padding: 0.6rem 1rem;
+  margin-top: 1rem;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.button-link:hover {
+  background-color: #27ae60;
+}
+
+
 /* Desktop styles */
 @media (min-width: 768px) {
   body {
