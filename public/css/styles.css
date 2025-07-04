@@ -2,11 +2,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
 
 :root {
-  --primary: #3498db;
+  --primary: #cba976;
   --accent: #2ecc71;
   --bg-light: #f9f3e7;
-  --text-dark: #443322;
-  --card-bg: red;
+  --text-dark: #3a2c1a;
+  --card-bg: #ffffff;
   --border-light: #e0d4b0;
 }
 
@@ -35,25 +35,12 @@ body {
 .overlay {
   position: relative;
   background-color: rgba(255, 255, 255, 0.9);
-  background-image: url('../images/parchment-texture.png');
+  background-image: url('../images/parchment-texture.jpg');
   background-repeat: repeat;
   padding: 3rem 2rem;
   border: 1px solid #e0d4b0;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   min-height: 100vh;
-}
-
-/* Torn paper edge across the top */
-.overlay::before {
-  content: '';
-  position: absolute;
-  top: -20px;
-  left: 0;
-  width: 100%;
-  height: 40px;
-  background: url('../images/torn-edge.png') repeat-x;
-  background-size: cover;
-  z-index: 2;
 }
 
 /* ---------- Typography ---------- */
@@ -68,13 +55,28 @@ h2 {
   letter-spacing: 0.05em;
 }
 
+.recipe-label {
+  font-family: 'Merriweather', serif;
+  font-weight: 700;
+  font-size: 1.4rem;
+  color: #6b4a27;
+  text-align: center;
+  margin-top: -1rem;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+
 /* ---------- Form Styling ---------- */
 form {
-  background-color: var(--card-bg);
-  border: 1px solid var(--border-light);
-  border-radius: 8px;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
+  background-image: url('../images/index-card-bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: 1px solid #d6c9a8;
+  border-radius: 6px;
+  padding: 2rem;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.05);
 }
 
@@ -103,14 +105,14 @@ textarea {
   margin-top: 1rem;
 }
 
-button,
-.button-link {
+button, .button-link {
   flex: 1 1 auto;
   padding: 0.6rem 1.2rem;
   font-size: 1rem;
   background-color: var(--primary);
-  color: white;
-  border: none;
+  color: var(--text-dark);
+  border: 1px solid rgba(60, 40, 20, 0.3);
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.08);
   border-radius: 4px;
   font-weight: bold;
   cursor: pointer;
@@ -121,7 +123,7 @@ button,
 
 button:hover,
 .button-link:hover {
-  background-color: #2980b9;
+  background-color: #8f6a3e;
   transform: scale(1.03);
 }
 
@@ -129,6 +131,14 @@ button:hover,
   display: inline-block;
   margin-top: 1rem;
 }
+
+.center-button {
+  display: block;
+  width: fit-content;
+  margin: 2rem auto;
+  grid-column: span 2;
+}
+
 
 /* ---------- Table Styling ---------- */
 table {
@@ -153,6 +163,44 @@ td {
 th {
   background-color: #ecf0f1;
 }
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.recipe-name {
+  animation: slideInLeft 0.5s ease-out;
+}
+
+
+.recipe-list-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.recipe-name {
+  background-color: #e1c39f;
+  border: 1px solid #b99c7b;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.05);
+  font-weight: bold;
+  font-size: 1.05rem;
+  color: var(--text-dark);
+  cursor: pointer;
+  animation: slideInLeft 0.5s ease-out;
+}
+
+
 
 /* ---------- Book Spread Layout (Desktop) ---------- */
 @media (min-width: 768px) {

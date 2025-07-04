@@ -13,6 +13,8 @@ const ingredientsInput = document.getElementById('ingredients');
 const instructionsInput = document.getElementById('instructions');
 const tableBody = document.getElementById('recipe-table-body');
 
+
+
 // Buttons
 document.getElementById('add-btn').addEventListener('click', addRecipe);
 document.getElementById('edit-btn').addEventListener('click', loadRecipeForEdit);
@@ -22,16 +24,15 @@ form.addEventListener('submit', saveChanges);
 
 // Render the table
 function renderRecipes() {
-  tableBody.innerHTML = '';
+  const recipeList = document.getElementById('recipe-list');
+  recipeList.innerHTML = ''; // Clear the list first
+
   recipes.forEach((recipe, index) => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${recipe.name}</td>
-      <td>${recipe.ingredients}</td>
-      <td>${recipe.instructions}</td>
-    `;
-    row.addEventListener('click', () => selectRecipe(index));
-    tableBody.appendChild(row);
+    const div = document.createElement('div');
+    div.classList.add('recipe-name');
+    div.textContent = recipe.name;
+    div.addEventListener('click', () => selectRecipe(index));
+    recipeList.appendChild(div);
   });
 }
 
