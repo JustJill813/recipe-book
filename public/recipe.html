@@ -4,17 +4,30 @@
   <meta charset="UTF-8" />
   <title>Recipe Details</title>
   <link rel="stylesheet" href="css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="overlay">
-    <h1 id="recipe-title"></h1>
-    <h2>Ingredients</h2>
+  <div class="form-card">
+    <h2 class="form-title" id="recipe-title">Recipe Title</h2>
+
+    <div class="time-row">
+      <div class="time-field"><strong>Servings:</strong> <span id="servings"></span></div>
+      <div class="time-field"><strong>Prep Time:</strong> <span id="prepTime"></span></div>
+      <div class="time-field"><strong>Cook Time:</strong> <span id="cookTime"></span></div>
+    </div>
+
+    <h3>Ingredients</h3>
     <p id="recipe-ingredients"></p>
 
-    <h2>Instructions</h2>
+    <h3>Instructions</h3>
     <p id="recipe-instructions"></p>
 
-    <a href="recipes.html">← Back to All Recipes</a>
+    <h3>Notes</h3>
+    <p id="recipe-notes"></p>
+
+    <div class="form-buttons">
+      <a href="recipes.html"><button>← Back</button></a>
+    </div>
   </div>
 
   <script src="js/details.js"></script>
