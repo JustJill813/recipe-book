@@ -1,18 +1,53 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const tableBody = document.getElementById('all-recipe-table-body');
+  const gallery = document.getElementById('recipe-gallery');
+  const savedRecipes = JSON.parse(localStorage.getItem('recipes')) || [];
 
-  // Pull recipes from localStorage (used by main.js)
-  const raw = localStorage.getItem('recipes');
-  const recipes = raw ? JSON.parse(raw) : [];
+  savedRecipes.forEach((recipe) => {
+    const card = document.createElement('div');
+    card.classList.add('recipe-card');
 
-  recipes.forEach(recipe => {
-    const row = document.createElement('tr');
-    row.innerHTML = `
-      <td>${recipe.name}</td>
-      <td>${recipe.ingredients}</td>
-      <td>${recipe.instructions}</td>
-    `;
-    tableBody.appendChild(row);
+    const title = document.createElement('h3');
+    title.className = 'recipe-title';
+    title.textContent = recipe.name;
+
+    const snippet = document.createElement('p');
+    snippet.className = 'recipe-snippet';
+    snippet.textContent = recipe.instructions.substring(0, 60) + '...';
+
+    const fullText = document.createElement('p');
+    fullText.className = 'recipe-full';
+    fullText.textContent = recipe.instructions;
+    fullText.style.display = 'none';
+
+    const viewBtn = document.createElement('button');
+    viewBtn.className = 'view-button';
+    viewBtn.textContent = 'View Recipe';
+    viewBtn.addEventListener('click', () => {
+      localStorage.setItem('selectedRecipe', JSON.stringify(recipe));
+      window.location.href = 'recipe.html';
+  });
+
+  const editBtn = document.createElement('button');
+  editBtn.className = 'edit-button';
+  editBtn.textContent = 'Edit Recipe';
+  editBtn.addEventListener('click', () => {
+    localStorage.setItem('editingRecipe', JSON.stringify(recipe));
+    window.location.href = 'index.html';
+});
+
+                                                                    
+    const buttonGroup = document.createElement('div');
+    buttonGroup.className = 'card-buttons';
+
+    buttonGroup.appendChild(viewBtn);
+    buttonGroup.appendChild(editBtn);
+
+    card.appendChild(title);
+    card.appendChild(snippet);
+    card.appendChild(fullText);
+    card.appendChild(buttonGroup);
+    gallery.appendChild(card);
   });
 });
+
 

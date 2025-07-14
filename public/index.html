@@ -14,6 +14,25 @@
 
   <form id="recipe-form">
     <div class="recipe-label">📋 Recipe Card</div>
+  
+    <div class="time-row">
+      <div class="time-field">
+        <label for="servings">Servings</label>
+        <input type="text" id="servings" placeholder="e.g. 4 servings" />
+      </div>
+
+    <div class="time-field">
+      <label for="prepTime">Prep Time</label>
+      <input type="text" id="prepTime" placeholder="e.g. 15 minutes" />
+    </div>
+
+    <div class="time-field">
+      <label for="cookTime">Cook Time</label>
+      <input type="text" id="cookTime" placeholder="e.g. 45 minutes" />
+    </div>
+  </div>
+
+
     <label for="name">Recipe Name:</label>
     <input type="text" id="name" name="name" required />
 
@@ -22,6 +41,10 @@
 
     <label for="instructions">Instructions:</label>
     <textarea id="instructions" name="instructions" required></textarea>
+
+    <label for="notes">Optional Notes</label>
+    <textarea id="notes" rows="3" placeholder="Tips, memories, substitutions..."></textarea>
+
 
     
     <div class="form-buttons">

@@ -80,6 +80,36 @@ form {
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.05);
 }
 
+.time-row {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap; /* helps with responsiveness */
+}
+
+.time-field {
+  flex: 1 1 30%;
+  min-width: 180px;
+}
+
+.time-field label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+  color: #5c4429;
+}
+
+.time-field input {
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.6rem;
+  border-radius: 5px;
+  border: 1px solid #d6c9a8;
+  background-color: #fff8ec;
+  box-shadow: inset 1px 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+
 label {
   display: block;
   margin-top: 1rem;
@@ -96,6 +126,27 @@ textarea {
   border-radius: 4px;
   box-sizing: border-box;
 }
+
+input,
+textarea {
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.6rem;
+  margin-top: 0.25rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  border: 1px solid #d6c9a8;
+  background-color: #fff8ec;
+  box-shadow: inset 1px 1px 2px rgba(0,0,0,0.05);
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-top: 1rem;
+  color: #5c4429;
+}
+
 
 /* ---------- Buttons ---------- */
 .form-buttons {
@@ -139,30 +190,59 @@ button:hover,
   grid-column: span 2;
 }
 
+.card-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
 
-/* ---------- Table Styling ---------- */
-table {
-  background-color: var(--card-bg);
-  border: 1px solid var(--border-light);
-  border-radius: 8px;
-  padding: 1.5rem;
-  margin-bottom: 2rem;
-  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.05);
-  width: 100%;
-  border-collapse: collapse;
+.view-button,
+.edit-button {
+  flex: 1 1 auto;
+}
+
+.card-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.view-button,
+.edit-button {
+  flex: 1 1 auto;
+  padding: 0.5rem 1rem;
   font-size: 0.95rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
-th,
-td {
-  padding: 0.5rem;
-  border: 1px solid #ddd;
-  text-align: left;
+/* View button styling */
+.view-button {
+  background-color: var(--primary);
+  color: var(--text-dark);
+  border: 1px solid rgba(60, 40, 20, 0.3);
 }
 
-th {
-  background-color: #ecf0f1;
+.view-button:hover {
+  background-color: #8f6a3e;
+  transform: scale(1.03);
 }
+
+/* Edit button styling */
+.edit-button {
+  background-color: #d8b07f;
+  color: var(--text-dark);
+  border: 1px solid rgba(60, 40, 20, 0.3);
+}
+
+.edit-button:hover {
+  background-color: #b58f61;
+  transform: scale(1.03);
+}
+
+
 
 @keyframes slideInLeft {
   from {
@@ -200,6 +280,51 @@ th {
   animation: slideInLeft 0.5s ease-out;
 }
 
+.recipe-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.recipe-card {
+  background-color: #f4e3c1;
+  border: 1px solid #d6c9a8;
+  padding: 1.25rem;
+  border-radius: 8px;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.08);
+  font-family: 'Merriweather', serif;
+}
+
+.recipe-title {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  color: #3a2c1a;
+}
+
+.recipe-snippet {
+  font-size: 0.95rem;
+  color: #5c4429;
+  margin-bottom: 1rem;
+}
+
+.view-button {
+  background-color: var(--primary);
+  color: var(--text-dark);
+  border: 1px solid rgba(60, 40, 20, 0.3);
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.view-button:hover {
+  background-color: #8f6a3e;
+  transform: scale(1.03);
+}
+
+
 
 
 /* ---------- Book Spread Layout (Desktop) ---------- */
@@ -233,7 +358,4 @@ th {
     font-size: 1.05rem;
   }
 
-  table {
-    font-size: 1rem;
-  }
 }

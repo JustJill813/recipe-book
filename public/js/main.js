@@ -107,12 +107,19 @@ function getFormData() {
   const name = nameInput.value.trim();
   const ingredients = ingredientsInput.value.trim();
   const instructions = instructionsInput.value.trim();
+  const servings = document.getElementById('servings').value.trim();
+  const prepTime = document.getElementById('prepTime').value.trim();
+  const cookTime = document.getElementById('cookTime').value.trim();
+  const notes = document.getElementById('notes').value.trim();
+
   if (!name || !ingredients || !instructions) {
-    alert('Please fill out all fields.');
+    alert('Please fill out recipe name, ingredients, and instructions.');
     return null;
   }
-  return { name, ingredients, instructions };
+
+  return { name, ingredients, instructions, servings, prepTime, cookTime, notes };
 }
+
 
 function resetForm() {
   form.reset();
