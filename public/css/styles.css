@@ -80,6 +80,31 @@ form {
   box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.05);
 }
 
+.instruction-list {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  color: #5c4429;
+  margin-bottom: 1rem;
+}
+
+.instruction-list li {
+  margin-bottom: 0.6rem;
+  line-height: 1.4;
+}
+
+.ingredients-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  list-style-type: disc;
+  padding-left: 1rem;
+  color: #5c4429;
+}
+
+.ingredients-grid li {
+  margin-bottom: 0.5rem;
+}
+
 .time-row {
   display: flex;
   gap: 1rem;
