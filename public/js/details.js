@@ -31,3 +31,23 @@ document.addEventListener('DOMContentLoaded', () => {
     ingredientsContainer.appendChild(li);
   });
 });
+
+// ✅ Fetch nutrition info from backend
+  fetch(`/api/recipes/${recipe.id}/nutrition`)
+    .then(res => res.json())
+    .then(nutrition => {
+      const nutritionBox = document.createElement('div');
+      nutritionBox.className = 'nutrition-box';
+
+      nutrition.forEach(item => {
+        const line = document.createElement('p');
+        line.textContent = `${item.name}: ${item.amount} ${item.unit} (${item.nutrients?.[0]?.name || 'Calories'}: ${item.nutrients?.[0]?.amount} ${item.nutrients?.[0]?.unit})`;
+        nutritionBox.appendChild(line);
+      });
+
+      document.querySelector('.form-card').appendChild(nutritionBox);
+    })
+    .catch(err => {
+      console.warn('Nutrition info unavailable:', err);
+  });
+

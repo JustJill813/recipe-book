@@ -172,6 +172,21 @@ label {
   color: #5c4429;
 }
 
+/* ---------- Nutrition Box ---------- */
+.nutrition-box {
+  background-color: #fff9eb;
+  border: 1px solid #d6c9a8;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-top: 1.5rem;
+  color: #5c4429;
+}
+.nutrition-box p {
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+}
+
+
 
 /* ---------- Buttons ---------- */
 .form-buttons {
