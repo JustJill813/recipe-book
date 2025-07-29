@@ -72,6 +72,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function selectRecipe(id) {
     const recipe = recipes.find(r => r.id === id);
     editingId = id;
+
+ // Save for use on recipe.html
+  localStorage.setItem('selectedRecipeId', recipe.id);
+
     nameInput.value = recipe.name;
     ingredientsInput.value = recipe.ingredients;
     instructionsInput.value = recipe.instructions;

@@ -1,21 +1,23 @@
 const express = require('express');
 const router = express.Router();
-const db = require('./database'); // ✅ Using centralized DB module
-const { getNutrition } = require('./spoonacular'); // ✅ Clean import
+const db = require('./database');
+const { getNutrition } = require('./spoonacular');
 
-// Ensure table exists (you could move this to database.js later)
-db.run(`CREATE TABLE IF NOT EXISTS recipes (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  name TEXT,
-  ingredients TEXT,
-  instructions TEXT,
-  servings TEXT,
-  prep_time TEXT,
-  cook_time TEXT,
-  notes TEXT
-)`);
+// ✅ Ensure the recipes table exists (you could move this to setup logic)
+db.run(`
+  CREATE TABLE IF NOT EXISTS recipes (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name TEXT,
+    ingredients TEXT,
+    instructions TEXT,
+    servings TEXT,
+    prep_time TEXT,
+    cook_time TEXT,
+    notes TEXT
+  )
+`);
 
-// GET all recipes
+// 📥 GET all recipes
 router.get('/', (req, res) => {
   db.all('SELECT * FROM recipes', [], (err, rows) => {
     if (err) return res.status(500).json({ error: err.message });
@@ -23,7 +25,7 @@ router.get('/', (req, res) => {
   });
 });
 
-// GET single recipe
+// 📥 GET a specific recipe
 router.get('/:id', (req, res) => {
   const { id } = req.params;
   db.get('SELECT * FROM recipes WHERE id = ?', [id], (err, row) => {
@@ -33,7 +35,7 @@ router.get('/:id', (req, res) => {
   });
 });
 
-// POST new recipe
+// 🆕 POST a new recipe
 router.post('/', (req, res) => {
   const { name, ingredients, instructions, servings, prep_time, cook_time, notes } = req.body;
   db.run(
@@ -47,7 +49,7 @@ router.post('/', (req, res) => {
   );
 });
 
-// PUT update recipe
+// ✏️ PUT to update a recipe
 router.put('/:id', (req, res) => {
   const { id } = req.params;
   const { name, ingredients, instructions, servings, prep_time, cook_time, notes } = req.body;
@@ -62,7 +64,7 @@ router.put('/:id', (req, res) => {
   );
 });
 
-// DELETE recipe
+// 🗑️ DELETE a recipe
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
   db.run('DELETE FROM recipes WHERE id = ?', [id], function (err) {
@@ -71,7 +73,7 @@ router.delete('/:id', (req, res) => {
   });
 });
 
-// GET nutrition info via Spoonacular
+// 🧪 GET nutrition info via Spoonacular
 router.get('/:id/nutrition', async (req, res) => {
   const { id } = req.params;
 
