@@ -1,6 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const recipeId = localStorage.getItem('selectedRecipeId'); // Just store the ID
-  if (!recipeId) return;
+  const recipeId = localStorage.getItem('selectedRecipeId');
+  if (!recipeId) {
+    document.body.innerHTML = '<p>⚠️ No recipe selected. Please go back and choose one.</p>';
+    return;
+  }
 
   fetch(`/api/recipes/${recipeId}`)
     .then(res => res.json())
@@ -11,7 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('cookTime').textContent = recipe.cook_time || '—';
       document.getElementById('recipe-notes').textContent = recipe.notes || 'None';
 
-      // Instructions
+      // 🥄 Instructions
+      const instructionContainer = document.getElementById('recipe-instructions');
+      instructionContainer.innerHTML = '';
       const steps = recipe.instructions.split('\n').filter(step => step.trim());
       const instructionList = document.createElement('ol');
       instructionList.className = 'instruction-list';
@@ -20,11 +25,9 @@ document.addEventListener('DOMContentLoaded', () => {
         li.textContent = step.trim();
         instructionList.appendChild(li);
       });
-      const instructionContainer = document.getElementById('recipe-instructions');
-      instructionContainer.innerHTML = '';
       instructionContainer.appendChild(instructionList);
 
-      // Ingredients
+      // 🧂 Ingredients
       const ingredientsContainer = document.getElementById('recipe-ingredients');
       ingredientsContainer.innerHTML = '';
       const ingredients = recipe.ingredients.split('\n').filter(item => item.trim());
@@ -34,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ingredientsContainer.appendChild(li);
       });
 
-      // 🍽️ Nutrition Info
+      // 🍽️ Nutrition Info from Spoonacular
       fetch(`/api/recipes/${recipeId}/nutrition`)
         .then(res => res.json())
         .then(nutrition => {
@@ -45,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
             line.textContent = `${item.name}: ${item.amount} ${item.unit} (${item.nutrients?.[0]?.name || 'Calories'}: ${item.nutrients?.[0]?.amount} ${item.nutrients?.[0]?.unit})`;
             nutritionBox.appendChild(line);
           });
-          document.querySelector('.form-card').appendChild(nutritionBox);
+          document.querySelector('.form-card')?.appendChild(nutritionBox);
         })
         .catch(err => {
           console.warn('Nutrition info unavailable:', err);
@@ -53,5 +56,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch(err => {
       console.warn('Failed to load recipe details:', err);
+      document.body.innerHTML = '<p>⚠️ Recipe details could not be loaded. Please try again.</p>';
     });
 });

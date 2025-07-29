@@ -1,53 +1,63 @@
 document.addEventListener('DOMContentLoaded', () => {
   const gallery = document.getElementById('recipe-gallery');
-  const savedRecipes = JSON.parse(localStorage.getItem('recipes')) || [];
 
-  savedRecipes.forEach((recipe) => {
-    const card = document.createElement('div');
-    card.classList.add('recipe-card');
+  // 🌐 Fetch recipes from backend API
+  fetch('/api/recipes')
+    .then(res => res.json())
+    .then(recipes => {
+      gallery.innerHTML = ''; // Clear any existing content
 
-    const title = document.createElement('h3');
-    title.className = 'recipe-title';
-    title.textContent = recipe.name;
+      recipes.forEach((recipe) => {
+        const card = document.createElement('div');
+        card.classList.add('recipe-card');
 
-    const snippet = document.createElement('p');
-    snippet.className = 'recipe-snippet';
-    snippet.textContent = recipe.instructions.substring(0, 60) + '...';
+        const title = document.createElement('h3');
+        title.className = 'recipe-title';
+        title.textContent = recipe.name;
 
-    const fullText = document.createElement('p');
-    fullText.className = 'recipe-full';
-    fullText.textContent = recipe.instructions;
-    fullText.style.display = 'none';
+        const snippet = document.createElement('p');
+        snippet.className = 'recipe-snippet';
+        snippet.textContent = recipe.instructions.substring(0, 60) + '...';
 
-    const viewBtn = document.createElement('button');
-    viewBtn.className = 'view-button';
-    viewBtn.textContent = 'View Recipe';
-    viewBtn.addEventListener('click', () => {
-      localStorage.setItem('selectedRecipe', JSON.stringify(recipe));
-      window.location.href = 'recipe.html';
-  });
+        const fullText = document.createElement('p');
+        fullText.className = 'recipe-full';
+        fullText.textContent = recipe.instructions;
+        fullText.style.display = 'none';
 
-  const editBtn = document.createElement('button');
-  editBtn.className = 'edit-button';
-  editBtn.textContent = 'Edit Recipe';
-  editBtn.addEventListener('click', () => {
-    localStorage.setItem('editingRecipe', JSON.stringify(recipe));
-    window.location.href = 'index.html';
+        const viewBtn = document.createElement('button');
+        viewBtn.className = 'view-button';
+        viewBtn.textContent = 'View Recipe';
+        viewBtn.addEventListener('click', () => {
+          // Store recipe ID for recipe.html to fetch from backend
+          localStorage.setItem('selectedRecipeId', recipe.id);
+          window.location.href = 'recipe.html';
+        });
+
+        const editBtn = document.createElement('button');
+        editBtn.className = 'edit-button';
+        editBtn.textContent = 'Edit Recipe';
+        editBtn.addEventListener('click', () => {
+          localStorage.setItem('editingRecipeId', recipe.id);
+          window.location.href = 'index.html';
+        });
+
+        const buttonGroup = document.createElement('div');
+        buttonGroup.className = 'card-buttons';
+        buttonGroup.appendChild(viewBtn);
+        buttonGroup.appendChild(editBtn);
+
+        card.appendChild(title);
+        card.appendChild(snippet);
+        card.appendChild(fullText);
+        card.appendChild(buttonGroup);
+        gallery.appendChild(card);
+      });
+    })
+    .catch(error => {
+      console.error('Error fetching recipes:', error);
+      gallery.innerHTML = '<p>⚠️ Could not load recipes. Please try again later.</p>';
+    });
 });
 
-                                                                    
-    const buttonGroup = document.createElement('div');
-    buttonGroup.className = 'card-buttons';
-
-    buttonGroup.appendChild(viewBtn);
-    buttonGroup.appendChild(editBtn);
-
-    card.appendChild(title);
-    card.appendChild(snippet);
-    card.appendChild(fullText);
-    card.appendChild(buttonGroup);
-    gallery.appendChild(card);
-  });
-});
 
 

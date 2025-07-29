@@ -8,6 +8,7 @@
 </head>
 <body>
   <div class="form-card">
+
     <h2 class="form-title" id="recipe-title">Recipe Title</h2>
 
     <div class="time-row">
@@ -17,20 +18,28 @@
     </div>
 
     <h3>Ingredients</h3>
-    <div id="recipe-ingredients" class="ingredients-grid"></div>
-
+    <ul id="recipe-ingredients" class="ingredients-grid"></ul>
 
     <h3>Instructions</h3>
-    <div id="recipe-instructions"></div>
+    <ol id="recipe-instructions"></ol>
 
     <h3>Notes</h3>
     <p id="recipe-notes"></p>
 
+    <h3>Nutrition Info</h3>
+    <!-- Spoonacular data will be injected here by details.js -->
+
     <div class="form-buttons">
-      <a href="recipes.html"><button>← Back</button></a>
+      <a href="recipes.html" class="button-link">← Back</a>
+    </div>
+
+    <div class="fallback-message" style="display:none; text-align:center; margin-top:2rem;">
+      <p>⚠️ Couldn’t load recipe details. Maybe something went off script in the kitchen?</p>
+      <a href="recipes.html" class="button-link">Try a different recipe</a>
     </div>
   </div>
 
   <script src="js/details.js"></script>
 </body>
 </html>
+
