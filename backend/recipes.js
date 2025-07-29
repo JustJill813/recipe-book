@@ -3,7 +3,7 @@ const router = express.Router();
 const db = require('./database');
 const { getNutrition } = require('./spoonacular');
 
-// ✅ Ensure the recipes table exists (you could move this to setup logic)
+// ✅ Ensure the recipes table exists
 db.run(`
   CREATE TABLE IF NOT EXISTS recipes (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
