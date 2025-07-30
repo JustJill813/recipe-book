@@ -2,7 +2,7 @@
 const axios = require('axios'); // ✅ Ensure Axios is installed
 require('dotenv').config();     // ✅ Load .env variables
 
-async function getNutrition(ingredientList) {
+async function getNutrition(title, ingredients, instructions) {
   try {
     const response = await axios.post(
       'https://api.spoonacular.com/recipes/analyze',

@@ -77,16 +77,16 @@ router.delete('/:id', (req, res) => {
 router.get('/:id/nutrition', async (req, res) => {
   const { id } = req.params;
 
-  db.get('SELECT ingredients FROM recipes WHERE id = ?', [id], async (err, row) => {
+  db.get('SELECT name, ingredients, instructions FROM recipes WHERE id = ?', [id], async (err, row) => {
     if (err || !row) return res.status(404).json({ error: 'Recipe not found' });
 
-    console.log('Sending to Spoonacular:', {
-      ingredientList: row.ingredients,
-      servings: 1 // or fetch dynamically if you store servings somewhere
-    });
+    const ingredientsArray = row.ingredients
+      .split('\n')
+      .map(str => str.trim())
+      .filter(Boolean);
 
     try {
-      const nutritionData = await getNutrition(row.ingredients);
+      const nutritionData = await getNutrition(row.name, ingredientsArray, row.instructions);
       res.json(nutritionData);
     } catch (e) {
       console.error('Spoonacular error:', e);
@@ -94,5 +94,6 @@ router.get('/:id/nutrition', async (req, res) => {
     }
   });
 });
+
 
 module.exports = router;
