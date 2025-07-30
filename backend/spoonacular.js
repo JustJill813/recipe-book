@@ -5,10 +5,11 @@ require('dotenv').config();     // ✅ Load .env variables
 async function getNutrition(ingredientList) {
   try {
     const response = await axios.post(
-      'https://api.spoonacular.com/recipes/parseIngredients',
+      'https://api.spoonacular.com/recipes/analyze',
       {
-        ingredientList,
-        servings: 1
+        title: recipeTitle,
+        ingredients: ingredientList, // 👉 This should be an array of strings
+        instructions: instructions   // Optional but helps with accuracy
       },
       {
         headers: {

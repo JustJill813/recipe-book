@@ -63,6 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
             fallback.textContent = 'Nutrition info not authorized.';
             nutritionBox.appendChild(fallback);
           } else {
+            console.log("Received nutrition data:", nutrition);
             console.warn("Unexpected format:", nutrition);
             const fallback = document.createElement('p');
             fallback.textContent = 'Nutrition info unavailable.';
