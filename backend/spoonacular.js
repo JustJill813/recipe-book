@@ -2,13 +2,24 @@
 const axios = require('axios');
 
 async function getNutrition(ingredients, servings = 1) {
-  const response = await axios.get('https://api.spoonacular.com/recipes/parseIngredients', {
-    params: {
+  const response = await axios.post(
+    'https://api.spoonacular.com/recipes/parseIngredients',
+    {
       ingredientList: ingredients,
-      servings,
-      apiKey: process.env.SPOONACULAR_KEY
+      servings: servings
+    },
+    {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      params: {
+        apiKey: process.env.SPOONACULAR_KEY
+      }
     }
-  });
+  );
+
+  console.log('Spoonacular response:', response.data);
+
   return response.data;
 }
 

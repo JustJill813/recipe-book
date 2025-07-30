@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       // 🍽️ Nutrition Info from Spoonacular
+      // 🍽️ Nutrition Info from Spoonacular
       const loadingMsg = document.createElement('p');
       loadingMsg.textContent = 'Fetching nutrition info...';
       document.querySelector('.form-card').appendChild(loadingMsg);
@@ -49,20 +50,27 @@ document.addEventListener('DOMContentLoaded', () => {
           const nutritionBox = document.createElement('div');
           nutritionBox.className = 'nutrition-box';
 
-          nutrition.forEach(item => {
-            const line = document.createElement('p');
-            const nutrientInfo = item.nutrients?.[0];
-            line.textContent = `${item.name}: ${item.amount} ${item.unit}` +
-              (nutrientInfo ? ` (${nutrientInfo.name}: ${nutrientInfo.amount} ${nutrientInfo.unit})` : '');
+        // 🧠 Check for Spoonacular's format
+        if (nutrition && Array.isArray(nutrition.nutrients)) {
+            nutrition.nutrients.forEach(nutrient => {
+             const line = document.createElement('p');
+            line.textContent = `${nutrient.name}: ${nutrient.amount} ${nutrient.unit}`;
             nutritionBox.appendChild(line);
           });
+        } else {
+          console.warn('Unexpected format:', nutrition);
+          const fallback = document.createElement('p');
+          fallback.textContent = 'Nutrition info unavailable.';
+          nutritionBox.appendChild(fallback);
+     }
 
-          document.querySelector('.form-card').appendChild(nutritionBox);
-        })
-        .catch(err => {
-          loadingMsg.remove();
-          console.warn('Nutrition info unavailable:', err);
-        });
+     document.querySelector('.form-card').appendChild(nutritionBox);
+  })
+  .catch(err => {
+    loadingMsg.remove();
+    console.warn('Nutrition info unavailable:', err);
+  });
+
 
       // ✏️ Edit & 🗑️ Delete buttons
       const buttonRow = document.createElement('div');
@@ -100,4 +108,5 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.innerHTML = '<p>⚠️ Recipe details could not be loaded. Please try again.</p>';
     });
 });
+
 

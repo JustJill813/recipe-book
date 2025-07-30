@@ -74,6 +74,11 @@ router.delete('/:id', (req, res) => {
 });
 
 // 🧪 GET nutrition info via Spoonacular
+console.log('Sending to Spoonacular:', {
+  ingredientList: ingredients,
+  servings: servings
+});
+
 router.get('/:id/nutrition', async (req, res) => {
   const { id } = req.params;
 

@@ -186,6 +186,26 @@ label {
   font-size: 0.95rem;
 }
 
+/* ---------- Nutrition Entry Styling ---------- */
+.nutrient-entry {
+  margin-bottom: 0.4rem;
+  font-size: 0.95rem;
+  padding: 0.3rem 0.6rem;
+  border-bottom: 1px dashed #d6c9a8;
+  color: var(--text-dark);
+  transition: background-color 0.2s ease;
+}
+
+.nutrient-entry:hover {
+  background-color: #fdf3db;
+}
+
+/* styles.css */
+.fallback-message {
+  display: none;
+  text-align: center;
+  margin-top: 2rem;
+}
 
 
 /* ---------- Buttons ---------- */

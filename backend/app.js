@@ -3,6 +3,8 @@ const path = require('path'); // ✅ Needed for static path resolution
 const cors = require('cors');
 require('dotenv').config();
 
+require('./initDb'); // Initialize DB table structure
+
 const recipesRouter = require('./recipes');
 
 const app = express();
