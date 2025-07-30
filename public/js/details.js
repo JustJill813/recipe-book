@@ -38,24 +38,66 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       // 🍽️ Nutrition Info from Spoonacular
+      const loadingMsg = document.createElement('p');
+      loadingMsg.textContent = 'Fetching nutrition info...';
+      document.querySelector('.form-card').appendChild(loadingMsg);
+
       fetch(`/api/recipes/${recipeId}/nutrition`)
         .then(res => res.json())
         .then(nutrition => {
+          loadingMsg.remove();
           const nutritionBox = document.createElement('div');
           nutritionBox.className = 'nutrition-box';
+
           nutrition.forEach(item => {
             const line = document.createElement('p');
-            line.textContent = `${item.name}: ${item.amount} ${item.unit} (${item.nutrients?.[0]?.name || 'Calories'}: ${item.nutrients?.[0]?.amount} ${item.nutrients?.[0]?.unit})`;
+            const nutrientInfo = item.nutrients?.[0];
+            line.textContent = `${item.name}: ${item.amount} ${item.unit}` +
+              (nutrientInfo ? ` (${nutrientInfo.name}: ${nutrientInfo.amount} ${nutrientInfo.unit})` : '');
             nutritionBox.appendChild(line);
           });
-          document.querySelector('.form-card')?.appendChild(nutritionBox);
+
+          document.querySelector('.form-card').appendChild(nutritionBox);
         })
         .catch(err => {
+          loadingMsg.remove();
           console.warn('Nutrition info unavailable:', err);
         });
+
+      // ✏️ Edit & 🗑️ Delete buttons
+      const buttonRow = document.createElement('div');
+      buttonRow.className = 'form-buttons';
+
+      const editLink = document.createElement('a');
+      editLink.href = `edit.html?id=${recipeId}`;
+      editLink.textContent = '✏️ Edit';
+      editLink.className = 'button-link';
+
+      const deleteBtn = document.createElement('button');
+      deleteBtn.textContent = '🗑️ Delete';
+      deleteBtn.className = 'button-link';
+      deleteBtn.onclick = () => {
+        if (confirm('Are you sure you want to delete this recipe?')) {
+          fetch(`/api/recipes/${recipeId}`, { method: 'DELETE' })
+            .then(res => res.json())
+            .then(result => {
+              if (result.deleted) {
+                alert('Recipe deleted!');
+                window.location.href = 'recipes.html';
+              } else {
+                alert('Failed to delete the recipe.');
+              }
+            });
+        }
+      };
+
+      buttonRow.appendChild(editLink);
+      buttonRow.appendChild(deleteBtn);
+      document.querySelector('.form-card').appendChild(buttonRow);
     })
     .catch(err => {
       console.warn('Failed to load recipe details:', err);
       document.body.innerHTML = '<p>⚠️ Recipe details could not be loaded. Please try again.</p>';
     });
 });
+
