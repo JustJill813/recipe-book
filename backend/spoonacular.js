@@ -1,26 +1,31 @@
 // /backend/spoonacular.js
-const axios = require('axios');
+const axios = require('axios'); // ✅ Ensure Axios is installed
+require('dotenv').config();     // ✅ Load .env variables
 
-async function getNutrition(ingredients, servings = 1) {
-  const response = await axios.post(
-    'https://api.spoonacular.com/recipes/parseIngredients',
-    {
-      ingredientList: ingredients,
-      servings: servings
-    },
-    {
-      headers: {
-        'Content-Type': 'application/json'
+async function getNutrition(ingredientList) {
+  try {
+    const response = await axios.post(
+      'https://api.spoonacular.com/recipes/parseIngredients',
+      {
+        ingredientList,
+        servings: 1
       },
-      params: {
-        apiKey: process.env.SPOONACULAR_KEY
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': process.env.SPOONACULAR_API_KEY // 👈 Your key in headers
+        }
       }
-    }
-  );
+    );
 
-  console.log('Spoonacular response:', response.data);
-
-  return response.data;
+    return response.data;
+  } catch (error) {
+    console.error('getNutrition error:', error.response?.data || error.message);
+    throw error;
+  }
 }
 
 module.exports = { getNutrition };
+
+
+

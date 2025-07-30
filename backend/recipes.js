@@ -74,16 +74,16 @@ router.delete('/:id', (req, res) => {
 });
 
 // 🧪 GET nutrition info via Spoonacular
-console.log('Sending to Spoonacular:', {
-  ingredientList: ingredients,
-  servings: servings
-});
-
 router.get('/:id/nutrition', async (req, res) => {
   const { id } = req.params;
 
   db.get('SELECT ingredients FROM recipes WHERE id = ?', [id], async (err, row) => {
     if (err || !row) return res.status(404).json({ error: 'Recipe not found' });
+
+    console.log('Sending to Spoonacular:', {
+      ingredientList: row.ingredients,
+      servings: 1 // or fetch dynamically if you store servings somewhere
+    });
 
     try {
       const nutritionData = await getNutrition(row.ingredients);

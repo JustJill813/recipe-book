@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       // 🍽️ Nutrition Info from Spoonacular
-      // 🍽️ Nutrition Info from Spoonacular
       const loadingMsg = document.createElement('p');
       loadingMsg.textContent = 'Fetching nutrition info...';
       document.querySelector('.form-card').appendChild(loadingMsg);
@@ -50,27 +49,35 @@ document.addEventListener('DOMContentLoaded', () => {
           const nutritionBox = document.createElement('div');
           nutritionBox.className = 'nutrition-box';
 
-        // 🧠 Check for Spoonacular's format
-        if (nutrition && Array.isArray(nutrition.nutrients)) {
+          console.log("Nutrition response object:", nutrition);
+
+          if (nutrition?.nutrients && Array.isArray(nutrition.nutrients)) {
             nutrition.nutrients.forEach(nutrient => {
-             const line = document.createElement('p');
-            line.textContent = `${nutrient.name}: ${nutrient.amount} ${nutrient.unit}`;
-            nutritionBox.appendChild(line);
-          });
-        } else {
-          console.warn('Unexpected format:', nutrition);
+              const line = document.createElement('p');
+              line.textContent = `${nutrient.name}: ${nutrient.amount} ${nutrient.unit}`;
+              nutritionBox.appendChild(line);
+            });
+          } else if (nutrition?.status === "failure") {
+            console.warn("Spoonacular error:", nutrition.message);
+            const fallback = document.createElement('p');
+            fallback.textContent = 'Nutrition info not authorized.';
+            nutritionBox.appendChild(fallback);
+          } else {
+            console.warn("Unexpected format:", nutrition);
+            const fallback = document.createElement('p');
+            fallback.textContent = 'Nutrition info unavailable.';
+            nutritionBox.appendChild(fallback);
+          }
+
+          document.querySelector('.form-card').appendChild(nutritionBox);
+        })
+        .catch(err => {
+          loadingMsg.remove();
+          console.warn("Nutrition fetch error:", err);
           const fallback = document.createElement('p');
-          fallback.textContent = 'Nutrition info unavailable.';
-          nutritionBox.appendChild(fallback);
-     }
-
-     document.querySelector('.form-card').appendChild(nutritionBox);
-  })
-  .catch(err => {
-    loadingMsg.remove();
-    console.warn('Nutrition info unavailable:', err);
-  });
-
+          fallback.textContent = 'Nutrition info could not be loaded.';
+          document.querySelector('.form-card').appendChild(fallback);
+        });
 
       // ✏️ Edit & 🗑️ Delete buttons
       const buttonRow = document.createElement('div');
@@ -108,5 +115,6 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.innerHTML = '<p>⚠️ Recipe details could not be loaded. Please try again.</p>';
     });
 });
+
 
 

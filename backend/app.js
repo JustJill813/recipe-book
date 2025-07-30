@@ -1,7 +1,11 @@
+require('dotenv').config();
+
+console.log('API Key:', process.env.SPOONACULAR_API_KEY); // Debug line
+
 const express = require('express');
 const path = require('path'); // ✅ Needed for static path resolution
 const cors = require('cors');
-require('dotenv').config();
+
 
 require('./initDb'); // Initialize DB table structure
 
