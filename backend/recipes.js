@@ -1,7 +1,7 @@
-const express = require('express');
-const router = express.Router();
-const db = require('./database');
-const { getNutrition } = require('./spoonacular');
+const express = require('express'); // Importing express to create the router
+const router = express.Router(); // Importing the database module and Spoonacular API utility-creates a new router instance
+const db = require('./database'); // Importing the SQLite database ojbect
+const { getNutrition } = require('./spoonacular'); // Importing the function to get nutrition info from Spoonacular
 
 // ✅ Ensure the recipes table exists
 db.run(`
@@ -17,7 +17,7 @@ db.run(`
   )
 `);
 
-// 📥 GET all recipes
+// 📥 GET all recipes-retreives all recipes from the database(read operation)
 router.get('/', (req, res) => {
   db.all('SELECT * FROM recipes', [], (err, rows) => {
     if (err) return res.status(500).json({ error: err.message });
@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
   });
 });
 
-// 📥 GET a specific recipe
+// 📥 GET a specific recipe by ID(read operation)
 router.get('/:id', (req, res) => {
   const { id } = req.params;
   db.get('SELECT * FROM recipes WHERE id = ?', [id], (err, row) => {
@@ -35,7 +35,7 @@ router.get('/:id', (req, res) => {
   });
 });
 
-// 🆕 POST a new recipe
+// 🆕 POST a new recipe(create operation)
 router.post('/', (req, res) => {
   const { name, ingredients, instructions, servings, prep_time, cook_time, notes } = req.body;
   db.run(
@@ -49,7 +49,7 @@ router.post('/', (req, res) => {
   );
 });
 
-// ✏️ PUT to update a recipe
+// ✏️ PUT to update a recipe's data(update operation)
 router.put('/:id', (req, res) => {
   const { id } = req.params;
   const { name, ingredients, instructions, servings, prep_time, cook_time, notes } = req.body;
@@ -64,7 +64,7 @@ router.put('/:id', (req, res) => {
   );
 });
 
-// 🗑️ DELETE a recipe
+// 🗑️ DELETE a recipe(delete operation)
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
   db.run('DELETE FROM recipes WHERE id = ?', [id], function (err) {
@@ -73,21 +73,24 @@ router.delete('/:id', (req, res) => {
   });
 });
 
-// 🧪 GET nutrition info via Spoonacular
+// 🧪 GET nutrition info via Spoonacular(external API integration)
 router.get('/:id/nutrition', async (req, res) => {
   const { id } = req.params;
 
-  db.get('SELECT name, ingredients, instructions FROM recipes WHERE id = ?', [id], async (err, row) => {
+  // Fetch the recipe by ID to get its ingredients and instructions
+  db.get('SELECT name, ingredients, instructions FROM recipes WHERE id = ?', [id], async (err, row) => { 
     if (err || !row) return res.status(404).json({ error: 'Recipe not found' });
 
+    //Convert ingredients to an array by splitting into new lines and trimming whitespace
     const ingredientsArray = row.ingredients
       .split('\n')
       .map(str => str.trim())
       .filter(Boolean);
 
-    try {
+    try { // Call the Spoonacular API to get nutrition data
+      // Pass the recipe name, ingredients array, and instructions to the getNutrition function
       const nutritionData = await getNutrition(row.name, ingredientsArray, row.instructions);
-      res.json(nutritionData);
+      res.json(nutritionData); // Return the nutrition data as JSON
     } catch (e) {
       console.error('Spoonacular error:', e);
       res.status(500).json({ error: 'Nutrition fetch failed' });
@@ -95,5 +98,5 @@ router.get('/:id/nutrition', async (req, res) => {
   });
 });
 
-
+// Export the router to use in app.js
 module.exports = router;

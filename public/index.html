@@ -1,70 +1,76 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Recipe Manager</title>
-  <link rel="stylesheet" href="css/styles.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@>
-  400;700&display=swap" rel="stylesheet">
-</head>
-<body>
-  <div class="overlay">
-  <h1>Recipe Manager</h1>
 
-  <form id="recipe-form">
-    <div class="recipe-label">📋 Recipe Card</div>
+<!DOCTYPE html> <!-- Declares the document as HTML5 -->
+<html lang="en"> <!-- Sets the language of the document to English -->
+<head> 
+  <meta charset="UTF-8" /> <!-- Sets the character encoding to UTF-8 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" /> <!-- Ensures proper scaling on mobile devices -->
+  <title>Recipe Manager</title> <!-- Title of the web page -->
+  <link rel="stylesheet" href="css/styles.css" /> <!-- Links to the external CSS file for styling -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@>  
+  400;700&display=swap" rel="stylesheet"> <!-- Links to Google Fonts for typography -->
+</head>
+
+<!--Main HTML structure for the Recipe Manager application-->
+<body> 
+  <div class="overlay"> <!-- Primary container with parchment-style layout -->
+  <h1>Recipe Manager</h1> <!-- Main heading of the application -->
+
+  <form id="recipe-form"> <!-- Form for adding/editing recipes -->
+    <div class="recipe-label">📋 Recipe Card</div> <!-- Decorative subheading for the form -->
   
-    <div class="time-row">
-      <div class="time-field">
-        <label for="servings">Servings</label>
-        <input type="text" id="servings" placeholder="e.g. 4 servings" />
+    <!--Time info fields-->
+    <div class="time-row"> <!-- Flex row for servings, prep, and cook time inputs -->
+      <div class="time-field"> <!-- Servings input field -->
+        <label for="servings">Servings</label> <!-- Label for servings input -->
+        <input type="text" id="servings" placeholder="e.g. 4 servings" /> <!-- Input for number of servings -->
       </div>
 
-    <div class="time-field">
-      <label for="prepTime">Prep Time</label>
-      <input type="text" id="prepTime" placeholder="e.g. 15 minutes" />
+    <div class="time-field"> <!-- Prep time input field -->
+      <label for="prepTime">Prep Time</label> <!-- Label for prep time input -->
+      <input type="text" id="prepTime" placeholder="e.g. 15 minutes" /> <!-- Input for preparation time -->
     </div>
 
-    <div class="time-field">
-      <label for="cookTime">Cook Time</label>
-      <input type="text" id="cookTime" placeholder="e.g. 45 minutes" />
+    <div class="time-field"> <!-- Cook time input field -->
+      <label for="cookTime">Cook Time</label> <!-- Label for cook time input -->
+      <input type="text" id="cookTime" placeholder="e.g. 45 minutes" /> <!-- Input for cooking time -->
     </div>
   </div>
 
+    <!--Main recipe fields-->
+    <label for="name">Recipe Name:</label> <!-- Label for recipe name input -->
+    <input type="text" id="name" name="name" required /> <!-- Input for recipe name, marked as required -->
 
-    <label for="name">Recipe Name:</label>
-    <input type="text" id="name" name="name" required />
+    <label for="ingredients">Ingredients:</label> <!-- Label for ingredients input -->
+    <textarea id="ingredients" name="ingredients" required></textarea> <!-- Textarea for listing ingredients, marked as required -->
 
-    <label for="ingredients">Ingredients:</label>
-    <textarea id="ingredients" name="ingredients" required></textarea>
+    <label for="instructions">Instructions:</label> <!-- Label for instructions input -->
+    <textarea id="instructions" name="instructions" required></textarea> <!-- Textarea for recipe instructions, marked as required -->
 
-    <label for="instructions">Instructions:</label>
-    <textarea id="instructions" name="instructions" required></textarea>
-
-    <label for="notes">Optional Notes</label>
-    <textarea id="notes" rows="3" placeholder="Tips, memories, substitutions..."></textarea>
+    <label for="notes">Optional Notes</label> <!-- Label for notes input -->
+    <textarea id="notes" rows="3" placeholder="Tips, memories, substitutions..."></textarea> <!-- Textarea for additional notes, not required -->
 
 
-    
-    <div class="form-buttons">
-      <button type="button" id="add-btn">Add Recipe</button>
-      <button type="button" id="edit-btn">Edit Recipe</button>
-      <button type="button" id="delete-btn">Delete Recipe</button>
-      <button type="submit" id="save-btn">Save Changes</button>
+    <!--Buttons for form actions-->
+    <div class="form-buttons"> <!-- Container for action buttons -->
+      <button type="button" id="add-btn">Add Recipe</button> <!-- Button to add a new recipe -->
+      <button type="button" id="edit-btn">Edit Recipe</button> <!-- Button to edit an existing recipe -->
+      <button type="button" id="delete-btn">Delete Recipe</button> <!-- Button to delete a recipe -->
+      <button type="submit" id="save-btn">Save Changes</button> <!-- Button to save changes to the recipe -->
     </div>
   </form>
 
-  <hr />
+  <hr /> <!-- Horizontal rule for visual separation -->
 
-<a href="recipes.html" class="button-link center-button">View All Recipes →</a>
+<!--Navigation Gallery-->
+<a href="recipes.html" class="button-link center-button">View All Recipes →</a> <!--Link to view all recipes-recipes.html-->
 
-<h2>My Recipes</h2>
+<h2>My Recipes</h2> <!-- Subheading for the recipe list section -->
 
-<div id="recipe-list" class="recipe-list-grid"></div>
+<!--Container for displaying the list of recipes-->
+<div id="recipe-list" class="recipe-list-grid"></div> <!-- Grid container for displaying recipes-JS dynamically populates this grid with saved recipes -->
 
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js"></script> <!-- Links to the main.js file to handle form logic and recipe ineraction -->
   </div>
 </body>
 </html>
