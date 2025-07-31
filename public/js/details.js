@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => { // Wait for the DOM to load
 
   // Get selected recipe ID from localStorage
-  const recipeId = localStorage.getItem('selectedRecipeId'); 
-    document.body.innerHTML = '<p>⚠️ No recipe selected. Please go back and choose one.</p>';
+  const recipeId = localStorage.getItem('selectedRecipeId'); // Retrieve the recipe ID from localStorage
+  if (!recipeId) { // Check if recipe ID exists
+    document.body.innerHTML = '<p>⚠️ No recipe selected. Please go back and choose one.</p>'; // Show an error message if no recipe ID is found
     return;
   }
 
@@ -11,11 +12,11 @@ document.addEventListener('DOMContentLoaded', () => { // Wait for the DOM to loa
     .then(res => res.json())
     .then(recipe => {
       // Check if recipe data is valid(populate basic recipe details)
-      document.getElementById('recipe-title').textContent = recipe.name;
-      document.getElementById('servings').textContent = recipe.servings || '—';
-      document.getElementById('prepTime').textContent = recipe.prep_time || '—';
-      document.getElementById('cookTime').textContent = recipe.cook_time || '—';
-      document.getElementById('recipe-notes').textContent = recipe.notes || 'None';
+      document.getElementById('recipe-title').textContent = recipe.name; // Set the recipe title in the HTML
+      document.getElementById('servings').textContent = recipe.servings || '—'; // Set the servings in the HTML, defaulting to '—' if not provided
+      document.getElementById('prepTime').textContent = recipe.prep_time || '—'; // Set the preparation time in the HTML, defaulting to '—' if not provided
+      document.getElementById('cookTime').textContent = recipe.cook_time || '—'; // Set the cooking time in the HTML, defaulting to '—' if not provided
+      document.getElementById('recipe-notes').textContent = recipe.notes || 'None'; // Set the recipe notes in the HTML, defaulting to 'None' if not provided
 
       // Render instructions as an ordered list
       const instructionContainer = document.getElementById('recipe-instructions'); // Clear previous content
