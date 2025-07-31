@@ -17,7 +17,7 @@ db.run(`
   )
 `);
 
-// 📥 GET all recipes-retreives all recipes from the database(read operation)
+//  GET all recipes-retreives all recipes from the database(read operation)
 router.get('/', (req, res) => {
   db.all('SELECT * FROM recipes', [], (err, rows) => {
     if (err) return res.status(500).json({ error: err.message });
@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
   });
 });
 
-// 📥 GET a specific recipe by ID(read operation)
+//  GET a specific recipe by ID(read operation)
 router.get('/:id', (req, res) => {
   const { id } = req.params;
   db.get('SELECT * FROM recipes WHERE id = ?', [id], (err, row) => {
@@ -35,7 +35,7 @@ router.get('/:id', (req, res) => {
   });
 });
 
-// 🆕 POST a new recipe(create operation)
+//  POST a new recipe(create operation)
 router.post('/', (req, res) => {
   const { name, ingredients, instructions, servings, prep_time, cook_time, notes } = req.body;
   db.run(

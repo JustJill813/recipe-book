@@ -1,14 +1,15 @@
 const axios = require('axios'); // Import axios for HTTP requests
 require('dotenv').config();     // Load environment variables from .env file
+console.log('Spoonacular API Key:', process.env.SPOONACULAR_API_KEY); // Log the API key for debugging
 
 //Main function to send recipe info to Spoonacular and get nutrition details
-async function getNutrition(title, ingredients, instructions) { 
+async function getNutrition(recipeTitle, ingredientsArray, instructions) { 
   try { // Extracting recipe title, ingredients, and instructions
     const response = await axios.post( //Make a POST request to Spoonacular API(recipes/analyze endpoint)
       'https://api.spoonacular.com/recipes/analyze',
       {
         title: recipeTitle,          // This should be a string
-        ingredients: ingredientList, // This should be an array of ingredient strings
+        ingredients: ingredientsArray, // This should be an array of ingredient strings
         instructions: instructions   // Optional but helps with accuracy
       },
       {

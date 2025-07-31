@@ -16,6 +16,7 @@ const app = express(); // Create an instance of the Express application
 // Serve static frontend files from the public directory (e.g., index.html, CSS, JS)
 app.use(express.static(path.join(__dirname, '../public')));
 
+app.use(express.static(path.join(__dirname, '../public'))); // Serve static files from the public directory, allowing the frontend to access them
 app.use(cors()); // Enable CORS for all routes so that the frontend can make requests to the backend
 app.use(express.json()); // Parse incoming JSON requests, allowing the API to handle JSON payloads
 app.use('/api/recipes', recipesRouter); // Mount the recipes router on the /api/recipes path

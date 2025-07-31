@@ -1,8 +1,13 @@
 // /backend/database.js
 const sqlite3 = require('sqlite3').verbose(); // Import sqlite3 and enable verbose mode for detailed error messages
 const path = require('path'); //Import Node's path module to help resolve the correct file path for the database
+require('dotenv').config(); // Load environment variables from .env file into process.env
+
+const dbName = process.env.DATABASE_NAME || 'recipes.db'; // Get the database name from environment variables or default to 'recipes.db'
 
 const dbPath = path.resolve(__dirname, '../data/recipes.db');//Construct the full path to the database file located in /data/recipes.db
+console.log('📦 Using database at:', dbPath); // Log the database path to the console for debugging purposes
+
 const db = new sqlite3.Database(dbPath); //Open (or create if it doesn't exist) the SQLite database at the resolved path
 
 module.exports = db; //Export the database object so it can be used in other parts of the application
