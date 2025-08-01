@@ -3,7 +3,7 @@ const router = express.Router(); // Importing the database module and Spoonacula
 const db = require('./database'); // Importing the SQLite database ojbect
 const { getNutrition } = require('./spoonacular'); // Importing the function to get nutrition info from Spoonacular
 
-// ✅ Ensure the recipes table exists
+// Ensure the recipes table exists
 db.run(`
   CREATE TABLE IF NOT EXISTS recipes (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -49,7 +49,7 @@ router.post('/', (req, res) => {
   );
 });
 
-// ✏️ PUT to update a recipe's data(update operation)
+//  PUT to update a recipe's data(update operation)
 router.put('/:id', (req, res) => {
   const { id } = req.params;
   const { name, ingredients, instructions, servings, prep_time, cook_time, notes } = req.body;
@@ -64,7 +64,7 @@ router.put('/:id', (req, res) => {
   );
 });
 
-// 🗑️ DELETE a recipe(delete operation)
+//  DELETE a recipe(delete operation)
 router.delete('/:id', (req, res) => {
   const { id } = req.params;
   db.run('DELETE FROM recipes WHERE id = ?', [id], function (err) {
