@@ -1,7 +1,7 @@
 const express = require('express'); // Importing express to create the router
 const router = express.Router(); // Importing the database module and Spoonacular API utility-creates a new router instance
 const db = require('./database'); // Importing the SQLite database ojbect
-const { getNutrition } = require('./spoonacular'); // Importing the function to get nutrition info from Spoonacular
+const { getNutrition } = require('./spoonacular-clean'); // Importing the function to get nutrition info from Spoonacular
 
 // Ensure the recipes table exists
 db.run(`
