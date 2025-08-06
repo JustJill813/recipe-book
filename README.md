@@ -19,7 +19,7 @@ My Recipe Manager is a web application that allows users to create, view, and ma
     - The backend handles table creation, insertion, querying and deletion, which provides persistent storage for user-generated content.
 5. **Calculated Function Output**
     - The backend includes a function that accepts multiple input parameters—such as recipe title, ingredients, and instructions—and returns nutritional data by analyzing the inputs via the Spoonacular API
-6. **Data Analysis form Arrays and Objects**
+6. **Data Analysis from Arrays and Objects**
     - The app dynamically analyzes structured data—such as arrays of ingredients and instructions, and objects returned from the Spoonacular API—and displays it in a user-friendly format. 
     - This includes rendering recipe steps, ingredient lists, and nutrition summaries directly from structured sources.  
 
