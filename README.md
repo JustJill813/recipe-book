@@ -38,7 +38,7 @@ A `fetch()` request is made from the backend to the Spoonacular API using the re
 
 
 2. **Install Dependencies**
-    -  Open the terminal
+    - Open the terminal
     - Navigate to GitBash/bash
     - Type in: npm install
 
@@ -48,7 +48,7 @@ A `fetch()` request is made from the backend to the Spoonacular API using the re
         - PORT=4000
         - DATABASE_NAME=recipes.db
         - SPOONACULAR_API_KEY=your_actual_api_key_here
-        ***(Replace your_actual_api_key_here wtih your Spoonacular API key)***
+        - ***(Replace your_actual_api_key_here wtih your Spoonacular API key)***
 
 
 4. **Start the Server**
@@ -59,7 +59,7 @@ A `fetch()` request is made from the backend to the Spoonacular API using the re
 5. **Open the Frontend**
     - Open your web browser and navigate to:
         http://localhost:4000
-    *** Make sure you've added at least one recipe before viewing the details. ***
+    - *** Make sure you've added at least one recipe before viewing the details. ***
 
         
 
