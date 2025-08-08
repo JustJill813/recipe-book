@@ -64,9 +64,9 @@ A `fetch()` request is made from the backend to the Spoonacular API using the re
     - *** Make sure you've added and saved at least one recipe before viewing the details. ***
 
         
-Finally I would like to thank everyone that helped with my project. They all helped to point me in the correct direction, especially with getting the API to work. I would not have finished without your help, and for that I am very grateful. Thank you all again.
-    - Ken Quiggins
-    - Milo
-    - Lisa Charters
-    - Alesha Robinson
+Finally I would like to thank everyone that helped with my project. They all helped with testing and pointing me in the correct direction, especially with getting the API to work. I would not have finished without your help, and for that I am very grateful. Thank you all again.
+- Ken Quiggins
+- Milo
+- Lisa Charters
+- Alesha Robinson
 
