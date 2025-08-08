@@ -1,17 +1,17 @@
-// analyse.js
+// cleans/formats data from Spoonacular API
 
 const axios = require('axios');
 
 
 if (!process.env.SPOONACULAR_API_KEY) {
-  console.error('Missing SPOONACULAR_API_KEY'); // fail fast
+  console.error('Missing SPOONACULAR_API_KEY'); 
   process.exit(1);
 }
 
 const spoonacular = axios.create({
   baseURL: 'https://api.spoonacular.com',
   headers: { 'Content-Type': 'application/json' },
-  timeout: 10_000         // 10 s guard-rail
+  timeout: 10_000         
 });
 
 /**
@@ -33,7 +33,7 @@ async function getNutrition(
       { title, servings, ingredients, instructions },
       {
         params: {
-          apiKey: process.env.SPOONACULAR_API_KEY,   // <-- in URL
+          apiKey: process.env.SPOONACULAR_API_KEY,   
           includeNutrition,
           includeTaste,
           language
@@ -42,7 +42,7 @@ async function getNutrition(
     );
     return data;
   } catch (err) {
-    // Surface actionable context instead of swallowing it
+    
     console.error(
       'Spoonacular error:',
       err.response?.status,

@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.getElementById('cookTime').textContent = recipe.cook_time || '—';
       document.getElementById('recipe-notes').textContent = recipe.notes || 'None';
 
-      // Render instructions as an ordered list
+      // Instructions-ordered list
       const instructionContainer = document.getElementById('recipe-instructions');
       instructionContainer.innerHTML = '';
       const steps = recipe.instructions.split('\n').filter(step => step.trim());
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
       instructionContainer.appendChild(instructionList);
 
-      // Render ingredients as an unorderd list
+      // Ingredients-unorderd list
       const ingredientsContainer = document.getElementById('recipe-ingredients');
       ingredientsContainer.innerHTML = '';
       const ingredients = recipe.ingredients.split('\n').filter(item => item.trim());
@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         ingredientsContainer.appendChild(li);
       });
 
-      // Nutrition Info(asynchronous fetch from Spoonacular API)
+      // Nutrition Info-from Spoonacular API
       const loadingMsg = document.createElement('p');
       loadingMsg.textContent = 'Fetching nutrition info...';
       document.querySelector('.form-card').appendChild(loadingMsg);
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
           document.querySelector('.form-card').appendChild(fallback);
         });
 
-      // Edit & Delete buttons
+      // Edit/Delete buttons
       const buttonRow = document.createElement('div');
       buttonRow.className = 'form-buttons';
 

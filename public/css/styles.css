@@ -1,9 +1,7 @@
 /* ---------- Import Font ---------- */
-/* Imports Merriweather from Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
 
-/* ---------- Root Variables ---------- */
-/*Defines theme color palette and base styles*/
+/*Defines theme color palette/base styles (root)*/
 :root {
   --primary: #cba976;
   --accent: #2ecc71;
@@ -14,15 +12,13 @@
 }
 
 /* ----------Base reset---------- */
-/*Ensures consistent box model and resets default margins and paddings*/
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ---------- Global Body Styles ---------- */
-/* Applies background and typography to entire page */
+/* Background/typography to entire page */
 body {
   background: var(--bg-light) url('../images/food-bg.jpg') center/cover no-repeat fixed;
   font-family: 'Merriweather', serif;
@@ -32,7 +28,6 @@ body {
   margin: 1rem;
 }
 
-/* ---------- Overlay Container ---------- */
 /* Main wrapper for content with parchment texture */
 .overlay {
   position: relative;
@@ -43,8 +38,7 @@ body {
   min-height: 100vh;
 }
 
-/* ---------- Recipe Gallery Styles ---------- */
-/* Displays recipe cards in a responsive grid layout */
+/* Displays recipe cards-recipe gallery */
 .recipe-gallery {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -52,22 +46,21 @@ body {
   margin-top: 2rem;
 }
 
-/* Typography and Headings for card styles */
-/* Styles for main headings */
+/* Main headings-cards */
 h1, h2 {
   text-align: center;
   color: #2c3e50;
   margin-bottom: 1rem;
 }
 
-/* Styles for main headings */
+
 h2 {
   font-size: 1.4rem;
   letter-spacing: 0.05em;
 }
 
 /* ---------- Recipe Label ---------- */
-/* Styles the main recipe label with emphasis */
+/* Main recipe label */
 .recipe-label {
   font-weight: 700;
   font-size: 1.4rem;
@@ -79,7 +72,6 @@ h2 {
 }
 
 /* ---------- Form Styling ---------- */
-/* Adds parchment texture and soft design to form */
 form {
   background: url('../images/parchment-texture.jpg') center/cover no-repeat;
   background-size: cover;
@@ -100,7 +92,7 @@ label {
 }
 
 /* ---------- Shared Input Styles ---------- */
-/* Styles text inputs and textareas across the form */
+/* Text inputs and textareas across the form */
 input,
 textarea {
   width: 100%;
@@ -113,8 +105,7 @@ textarea {
   box-shadow: inset 1px 1px 2px rgba(0,0,0,0.05);
 }
 
-/* ---------- Instructions List ---------- */
-/* Styles numbered instruction steps */
+/* ---------- Numbered instructions List ---------- */
 .instruction-list {
   list-style-type: decimal;
   padding-left: 1.5rem;
@@ -122,14 +113,13 @@ textarea {
   margin-bottom: 1rem;
 }
 
-/* Styles individual instruction items */
+/* Individual instruction items */
 .instruction-list li {
   margin-bottom: 0.6rem;
   line-height: 1.4;
 }
 
 /* ---------- Ingredients Grid ---------- */
-/* Displays ingredients in multiple columns responsively */
 .ingredients-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -139,13 +129,12 @@ textarea {
   color: #5c4429;
 }
 
-/* Styles individual ingredient items */
+/* Individual ingredient items */
 .ingredients-grid li {
   margin-bottom: 0.5rem;
 }
 
 /* ---------- Time Entry Fields ---------- */
-/* Lays out prep/cook time inputs in a flexible row */
 .time-row {
   display: flex;
   gap: 1rem;
@@ -153,13 +142,13 @@ textarea {
   flex-wrap: wrap;
 }
 
-/* Styles for individual time fields */
+/* Individual time fields */
 .time-field {
   flex: 1 1 30%;
   min-width: 180px;
 }
 
-/* Styles for time field labels */
+/* Time field labels */
 .time-field label {
   display: block;
   font-weight: bold;
@@ -167,7 +156,7 @@ textarea {
   color: #5c4429;
 }
 
-/* Styles for time input fields */
+/* Time input fields */
 .time-field input {
   width: 100%;
   font-size: 1rem;
@@ -179,7 +168,6 @@ textarea {
 }
 
 /* ---------- Recipe Form Labels ---------- */
-/* Styles labels for recipe form fields */
 label {
   display: block;
   margin-top: 1rem;
@@ -187,7 +175,6 @@ label {
 }
 
 /* ---------- Nutrition Summary Box ---------- */
-/*Nutrition display styling */
 .nutrition-box {
   background-color: #fff9eb;
   border: 1px solid #d6c9a8;
@@ -205,7 +192,6 @@ label {
 }
 
 /* ---------- Individual Nutrition Entries ---------- */
-/* Styles each nutrient entry in the summary */
 .nutrient-entry {
   padding: 0.3rem 0.6rem;
   border-bottom: 1px dashed #d6c9a8;
@@ -213,13 +199,13 @@ label {
   transition: background-color 0.2s ease;
 }
 
-/* Hover effect for nutrient entries */
+/* Hover effect-nutrient entries */
 .nutrient-entry:hover {
   background-color: #fdf3db;
 }
 
 /* ---------- Fallback Message ---------- */
-/* Message shown when content is missing or loading fails */
+/* Missing content or loading fails */
 .fallback-message {
   display: none;
   text-align: center;
@@ -227,7 +213,6 @@ label {
 }
 
 /* ---------- Form Buttons ---------- */
-/* Styles for buttons in forms and cards */
 .form-buttons,
 .card-buttons {
   display: flex;
@@ -236,7 +221,7 @@ label {
   margin-top: 1rem;
 }
 
-/* Button Styles (shared across cards and form actions) */
+/* Button Styles (cards and form) */
 button, .button-link,
 .view-button, .edit-button {
   padding: 0.6rem 1.2rem;
@@ -251,7 +236,7 @@ button, .button-link,
   border: 1px solid rgba(60, 40, 20, 0.3);
 }
 
-/* Button link styles for navigation */
+/* Button link styles-navigation */
 .button-link {
   display: inline-block;
   margin-top: 1rem;
@@ -273,7 +258,7 @@ button:hover,
   transform: scale(1.03);
 }
 
-/* Button color schemes */
+/* Button color */
 button,
 .button-link,
 .view-button {
@@ -281,13 +266,13 @@ button,
   color: var(--text-dark);
 }
 
-/* Button hover effects for primary buttons */
+/* Button hover-primary buttons */
 .edit-button {
   background-color: #d8b07f;
   color: var(--text-dark);
 }
 
-/* Button hover effects for view and edit buttons */
+/* Button effects-view/edit buttons */
 .edit-button:hover {
   background-color: #b58f61;
 }
@@ -298,7 +283,6 @@ button,
 }
 
 /* ----------Recipe card & Lists styles---------- */
-/* Styles for individual recipe cards and list items */
 .recipe-name {
   background-color: #e1c39f;
   border: 1px solid #b99c7b;
@@ -312,14 +296,14 @@ button,
   animation: slideInLeft 0.5s ease-out;
 }
 
-/* Animation for recipe card appearance */
+/* Animation-recipe card */
 .recipe-title {
   font-size: 1.2rem;
   color: #3a2c1a;
   margin-bottom: 0.5rem;
 }
 
-/* Recipe snippet for brief description */
+/* Recipe snippet */
 .recipe-snippet {
   font-size: 0.95rem;
   color: #5c4429;
@@ -336,7 +320,7 @@ button,
   font-family: 'Merriweather', serif;
 }
 
-/* Recipe list grid for displaying multiple cards */
+/* Recipe list grid-display multiple cards */
 .recipe-list-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -344,7 +328,7 @@ button,
   margin-top: 1
 }
 
-/* ---------- Book Spread Layout (Desktop) ---------- */
+/* ---------- (Desktop) ---------- */
 @media (min-width: 768px) {
   body {
     margin: 2rem auto;

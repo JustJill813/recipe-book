@@ -1,6 +1,6 @@
-<!DOCTYPE html> <!-- Declares this as an HTML5 document -->
+<!DOCTYPE html> 
 <html lang="en">
-<head> <!-- Metadata and external resources section -->
+<head> 
   <meta charset="UTF-8" />
   <title>Recipe Details</title>
   <link rel="stylesheet" href="css/styles.css" />
@@ -9,40 +9,40 @@
 
 </head>
 
-<body> <!-- Start of visible page content -->
-  <div class="form-card"> <!-- Styled card container for recipe content -->
+<body> 
+  <div class="form-card"> 
 
-    <h2 class="form-title" id="recipe-title">Recipe Title</h2> <!-- Placeholder for recipe name, filled dynamically -->
+    <h2 class="form-title" id="recipe-title">Recipe Title</h2> 
 
-    <div class="time-row"> <!-- Flex row for displaying time-related information -->
-      <div class="time-field"><strong>Servings:</strong> <span id="servings"></span></div> <!-- Placeholder for servings, filled dynamically -->
-      <div class="time-field"><strong>Prep Time:</strong> <span id="prepTime"></span></div> <!-- Placeholder for prep time, filled dynamically -->
-      <div class="time-field"><strong>Cook Time:</strong> <span id="cookTime"></span></div> <!-- Placeholder for cook time, filled dynamically -->
+    <div class="time-row"> 
+      <div class="time-field"><strong>Servings:</strong> <span id="servings"></span></div> 
+      <div class="time-field"><strong>Prep Time:</strong> <span id="prepTime"></span></div> 
+      <div class="time-field"><strong>Cook Time:</strong> <span id="cookTime"></span></div> 
     </div>
 
-    <h3>Ingredients</h3> <!-- Subheading for ingredients section -->
-    <ul id="recipe-ingredients" class="ingredients-grid"></ul> <!-- Unordered list for ingredients, filled dynamically -->
+    <h3>Ingredients</h3> 
+    <ul id="recipe-ingredients" class="ingredients-grid"></ul> 
 
-    <h3>Instructions</h3> <!-- Subheading for instructions section -->
-    <ol id="recipe-instructions"></ol> <!-- Ordered list for instructions, filled dynamically -->
+    <h3>Instructions</h3> 
+    <ol id="recipe-instructions"></ol> 
 
-    <h3>Notes</h3> <!-- Subheading for notes section -->
-    <p id="recipe-notes"></p> <!-- Paragraph for additional notes, filled dynamically -->
+    <h3>Notes</h3> 
+    <p id="recipe-notes"></p> 
 
-    <h3>Nutrition Info</h3> <!-- Subheading for nutrition information -->
+    <h3>Nutrition Info</h3> 
 
     <!-- Spoonacular data will be injected here by details.js -->
 
-    <div class="form-buttons"> <!-- Navigation button container -->
-      <a href="recipes.html" class="button-link">← Back</a> <!-- Link to go back to the recipe list -->
+    <div class="form-buttons"> 
+      <a href="recipes.html" class="button-link">← Back</a> 
     </div>
 
-    <div class="fallback-message"> <!-- Fallback message for error handling -->
-      <p>⚠️ Couldn’t load recipe details. Maybe something went off script in the kitchen?</p> <!-- Error message displayed if recipe details fail to load -->
-      <a href="recipes.html" class="button-link">Try a different recipe</a> <!-- Link to go back to the recipe list -->
+    <div class="fallback-message"> 
+      <p>⚠️ Couldn’t load recipe details. Maybe something went off script in the kitchen?</p> 
+      <a href="recipes.html" class="button-link">Try a different recipe</a> 
     </div>
 
-  <script src="js/details.js"></script> <!-- Links to the details.js file to populate page content -->
+  <script src="js/details.js"></script> 
 </body>
 </html>
 

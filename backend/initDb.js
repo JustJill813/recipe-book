@@ -1,6 +1,7 @@
-const db = require('./database'); //Import the database instance created in database.js
+//setup database-creates recipe table if it doesn't exist
 
-//Create the "recipes" table if it doesn't exist already
+const db = require('./database'); 
+
 db.run(` 
   CREATE TABLE IF NOT EXISTS recipes (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -13,7 +14,7 @@ db.run(`
     notes TEXT
   )
     
-`, (err) => { //If there is an error during table creation, log it to the console
+`, (err) => { 
   if (err) {
     console.error('❌ Failed to create recipes table:', err);
   } else {
